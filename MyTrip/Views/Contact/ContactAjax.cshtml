@@ -1,0 +1,65 @@
+﻿@model Models.Contact
+<div id="contactdiv">
+    <div class="w3l-contact-heading">
+        <h2>Contact Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porta efficitur ante quis volutpat.</p>
+    </div>
+    <div class="agile-contact-form">
+        <div class="col-md-6 contact-form-left">
+            <div class="contact-form-top">
+                <h3>Get in touch</h3>
+                <p>Pellentesque eget mi nec est tincidunt accumsan. Proin fermentum dignissim justo, vel euismod justo sodales vel. In non condimentum mauris. Maecenas condimentum interdum lacus, ac varius nisl dignissim ac. Vestibulum euismod est risus, quis convallis nisi tincidunt eget. Sed ultricies congue lacus at fringilla.</p>
+            </div>
+            <div class="contact-address">
+                <ul>
+                    <li><i class="fa fa-phone" aria-hidden="true"></i> <span>+1 234 567 8901</span></li>
+                    <li><i class="fa fa-phone fa-envelope" aria-hidden="true"></i> <span><a href="mailto:example@email.com">mail@example.com</a></span></li>
+                    <li><i class="fa fa-map-marker" aria-hidden="true"></i></i> <span>Eiusmod Tempor inclore Place,Kingsport 56777.</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 contact-form-right">
+            <div class="contact-form-top">
+                <h3>Send us a message</h3>
+            </div>
+            @if (Utils.TempData("Status", TempData) == "emailSent")
+        {
+                <div class="col-sm-offset-1 status alert alert-success">@Resources.Contact.ContactAjax.EmailSent</div>
+        }
+            @Html.ValidationSummary(false, Resources.Error.summary, new { @class = "validate                                                                                                                                                                                                                                                status alert alert-info" })
+            @{
+            var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+            var options = new AjaxOptions()
+            {
+                HttpMethod = "Post",
+                InsertionMode = InsertionMode.ReplaceWith,
+                UpdateTargetId = "contactdiv"
+            };
+            }
+
+
+            <div class="contact-form-grid">
+                @using (Ajax.BeginForm("ContactAjax", "Contact", new { language = culture }, options))
+        {
+                    @Html.AntiForgeryToken()
+                    @Html.TextBoxFor(x => x.Name, new { @placeholder = @Resources.Contact.ContactAjax.Name })
+                    @Html.ValidationMessageFor(x => x.Name, null, new { @class = "validate" })
+
+                    @Html.TextBoxFor(x => x.Email, new { @placeholder = @Resources.Contact.ContactAjax.Email })
+                    @Html.ValidationMessageFor(x => x.Email, null, new { @class = "validate" })
+
+                    @Html.TextBoxFor(x => x.Phone, new { @placeholder = @Resources.Contact.ContactAjax.Phone })
+                    @Html.ValidationMessageFor(x => x.Phone, null, new { @class = "validate" })
+
+                    @Html.TextAreaFor(x => x.Message, new { @placeholder = @Resources.Contact.ContactAjax.Message, @rows = "8" })
+                    @Html.ValidationMessageFor(x => x.Message, null, new { @class = "validate" })
+                    <div>
+                        <input type="submit" class="btn1 margin-top" value="@Resources.Contact.ContactAjax.BtnSubmit" />
+                    </div>
+        }
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+
+</div>

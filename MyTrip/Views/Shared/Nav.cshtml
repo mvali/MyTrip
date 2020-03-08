@@ -1,0 +1,58 @@
+﻿@{
+    var routeValues = this.ViewContext.RouteData.Values;
+    var controller = routeValues["controller"] as string;
+    var action = routeValues["action"] as string;
+}
+<!-- banner -->
+<div class="banner @Html.Raw(Utils.ControlerViewIs("Home", "Index", ViewContext) ? "" : "about-bg")">
+    <div class="top-banner">
+        <div class="container">
+            <div class="top-banner-left">
+                <ul>
+                    <li><i class="fa fa-phone" aria-hidden="true"></i> +1 234 567 8901</li>
+                    <li><a href="mailto:example@email.com"><i class="fa fa-envelope" aria-hidden="true"></i> mail@example.com</a></li>
+                </ul>
+            </div>
+            <div class="top-banner-right">
+                <ul>
+                    <li><span>@Html.ActionLink(Resources._Layout.Romanian, @action, @controller, new { language = "ro" }, new { rel = "alternate", hreflang = "ro", @class = "buttonLang" + (CultureHelper.LanguageIs("ro") ? " set" : ""), @title = Resources._Layout.ChooseYourLanguageRo })</span><span>@Html.ActionLink(Resources._Layout.English, @action, @controller, new { language = "en" }, new { rel = "alternate", hreflang = "en", @class = "buttonLang" + (CultureHelper.LanguageIs("en") ? " set" : ""), @title = Resources._Layout.ChooseYouLanguageEng })</span></li>
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a class="facebook" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a class="facebook" href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a class="facebook" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>
+                    <a href="index.html">My Trip</a>
+                </h1>
+            </div>
+            <div class="top-nav">
+                <nav class="navbar navbar-default">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        Menu
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink(@Resources.Nav.Home, "Index", "Home", null, new { @class = Utils.ControlerViewIs("Home", "Index", ViewContext) ? "active" : "" })</li>
+                            <li>@Html.ActionLink(@Resources.Nav.About, "Index", "About", null, new { @class = Utils.ControlerViewIs("About", "Index", ViewContext) ? "active" : "" })</li>
+                            <li>@Html.ActionLink(@Resources.Nav.Services, "Index", "Services", null, new { @class = Utils.ControlerViewIs("Services", "Index", ViewContext) ? "active" : "" })</li>
+                            <li>@Html.ActionLink(@Resources.Nav.Codes, "Index", "Codes", null, new { @class = Utils.ControlerViewIs("Codes", "Index", ViewContext) ? "active" : "" })</li>
+                            <li>@Html.ActionLink(@Resources.Nav.Gallery, "Index", "Gallery", null, new { @class = Utils.ControlerViewIs("Gallery", "Index", ViewContext) ? "active" : "" })</li>
+                            <li>@Html.ActionLink(@Resources.Nav.Contact, "Index", "Contact", null, new { @class = Utils.ControlerViewIs("Contact", "Index", ViewContext) ? "active" : ""})</li>
+                            <div class="clearfix"> </div>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //banner -->
