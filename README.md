@@ -1,0 +1,2 @@
+# MyTrip
+Travel website template
